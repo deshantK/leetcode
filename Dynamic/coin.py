@@ -8,22 +8,25 @@ def solve(coins, amount, dp):
     
     index = len(coins)-1
     min_ = float('inf')
-    while index >= 0:
-        s = coins[index]
+    for s in coins:
         val = solve(coins, amount-s, dp)
         if val >= 0 and val < min_:
             min_ = val+1
-        index -=1
+            
     if min_ != float('inf'):
         dp[amount] = min_
+    else:
+        dp[amount] = -1
     return dp[amount]
 
 
 
 
 
-coins = [1,2,5]
-amount = 11
+coins = [186,419,83,408]
+amount = 6249
 dp = [float('inf')]*(amount+1)
+coins.sort()
+print(coins)
 val = solve(coins, amount, dp)
 print (val)
